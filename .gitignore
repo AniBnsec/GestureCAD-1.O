@@ -46,3 +46,6 @@ Thumbs.db
 .eslintcache
 .parcel-cache
 .turbo/
+
+# Internal planning files
+IMPLEMENTATION_PLAN.md
