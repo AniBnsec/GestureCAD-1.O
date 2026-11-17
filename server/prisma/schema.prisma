@@ -1,0 +1,46 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Design {
+  id                String          @id @default(uuid())
+  name              String
+  configuration     String          // JSON string of parameters (wingspan, armLength, etc.)
+  components        String          // JSON string of component library state & visibility
+  validationResults String?         // JSON string of rule-based validation results
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  variants          DesignVariant[]
+  commands          CommandHistory[]
+}
+
+model DesignVariant {
+  id            String   @id @default(uuid())
+  designId      String
+  variantName   String
+  configuration String   // JSON string of variant configuration
+  createdAt     DateTime @default(now())
+  design        Design   @relation(fields: [designId], references: [id], onDelete: Cascade)
+}
+
+model CommandHistory {
+  id        String   @id @default(uuid())
+  designId  String?
+  command   String
+  response  String   // JSON string of AI/interpreter response
+  createdAt DateTime @default(now())
+  design    Design?  @relation(fields: [designId], references: [id], onDelete: Cascade)
+}
+

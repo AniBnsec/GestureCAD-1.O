@@ -1,0 +1,21 @@
+{
+  "name": "gesturecad-studio",
+  "version": "1.0.0",
+  "description": "GestureCAD - Spatial CAD Studio for Autonomous Aerospace Engineering. Real-Time 3D Parametric Modeling, MediaPipe Gesture Control, and AI Copilot.",
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd server && npm run build && cd ../client && npm run build",
+    "db:push": "cd server && npx prisma db push",
+    "db:seed": "cd server && npx prisma db seed"
+  },
+  "keywords": ["cad", "gestures", "drone", "aerospace", "engineering", "mediapipe", "threejs", "ai"],
+  "author": "GestureCAD Systems",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
