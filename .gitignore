@@ -47,6 +47,3 @@ Thumbs.db
 .parcel-cache
 .turbo/
 
-# Internal planning & design reference files
-IMPLEMENTATION_PLAN.md
-design-references/
